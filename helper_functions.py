@@ -96,6 +96,15 @@ def output_repeated_block(byte_string: bytes, block_size: int) -> bytes:
     return None
 
 
+def find_block(byte_string: bytes, search_block: bytes, block_size: int) -> int | None:
+    """Finds the index of a block in a byte string"""
+    for i in range(0, len(byte_string), block_size):
+        if byte_string[i : i + block_size] == search_block:
+            return i
+
+    return None
+
+
 def has_repeated_blocks(byte_string: bytes, block_size: int) -> bool:
     if output_repeated_block(byte_string, block_size):
         return True

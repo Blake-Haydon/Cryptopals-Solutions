@@ -20,9 +20,9 @@ This repo contains my solutions to the Cryptopals challenges, a set of cryptogra
   - [x] 10
   - [x] 11
   - [x] 12
-  - [ ] 13
-  - [ ] 14
-  - [ ] 15
+  - [x] 13
+  - [x] 14
+  - [x] 15
   - [ ] 16
 - [ ] SET 3
   - [ ] ...

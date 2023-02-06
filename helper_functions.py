@@ -79,6 +79,7 @@ def xor_hex_strings(a: str, b: str) -> bytes:
 
 
 def has_repeated_blocks(byte_string: bytes, block_size: int) -> bool:
+    # TODO: this is a naive implementation and can be improved
     for i in range(0, len(byte_string), block_size):
         for j in range(0, len(byte_string), block_size):
             # The same block will always match itself so skip

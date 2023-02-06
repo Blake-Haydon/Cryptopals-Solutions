@@ -78,7 +78,8 @@ def xor_hex_strings(a: str, b: str) -> bytes:
     return xor_bytes(bytes.fromhex(a), bytes.fromhex(b))
 
 
-def has_repeated_blocks(byte_string: bytes, block_size: int) -> bool:
+def output_repeated_block(byte_string: bytes, block_size: int) -> bytes:
+    """Returns the first repeated block in a byte string"""
     # TODO: this is a naive implementation and can be improved
     for i in range(0, len(byte_string), block_size):
         for j in range(0, len(byte_string), block_size):
@@ -90,6 +91,13 @@ def has_repeated_blocks(byte_string: bytes, block_size: int) -> bool:
             a = byte_string[i : i + block_size]
             b = byte_string[j : j + block_size]
             if a == b:
-                return True
+                return a
+
+    return None
+
+
+def has_repeated_blocks(byte_string: bytes, block_size: int) -> bool:
+    if output_repeated_block(byte_string, block_size):
+        return True
 
     return False

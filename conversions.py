@@ -17,3 +17,13 @@ def int2bytes(integer: int) -> bytes:
     """Convert a single byte integer (0, 255) to a byte"""
     assert 0 <= integer <= 255, "The integer must be between 0 and 255"
     return integer.to_bytes(1, "little")
+
+
+def string2dict(string: str) -> dict:
+    """Converts a string of the form `key1=value1&key2=value2&...` to a dictionary"""
+    kv_store = {}
+    for kv_pair in string.split("&"):
+        k, v = kv_pair.split("=")
+        kv_store[k] = v
+
+    return kv_store

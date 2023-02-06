@@ -11,6 +11,12 @@ def apply_pkcs_7(byte_string: bytes, block_size: int) -> bytes:
 
 
 def remove_pkcs_7(byte_string: bytes) -> bytes:
-    """Removes PKCS#7 padding from a byte string"""
+    """Removes PKCS#7 padding from a byte string. Will raise an error if the padding is invalid."""
     pad_len = byte_string[-1]
+    pad_bytes = byte_string[-pad_len:]
+
+    # Padding must all be equal to the length of the padding
+    if not all(byte == pad_len for byte in pad_bytes):
+        raise ValueError("Invalid PKCS#7 padding")
+
     return byte_string[:-pad_len]

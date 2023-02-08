@@ -27,3 +27,19 @@ def string2dict(string: str, equal_sign: str = "=", break_sign: str = "&") -> di
         kv_store[k] = v
 
     return kv_store
+
+
+def bytes2blocks(byte_string: bytes, blocksize: int) -> list[bytes]:
+    """Splits a byte string into blocks of length `blocksize`"""
+    assert (
+        len(byte_string) % blocksize == 0
+    ), "The byte string must be a multiple of the blocksize"
+
+    return [
+        byte_string[i : i + blocksize] for i in range(0, len(byte_string), blocksize)
+    ]
+
+
+def blocks2bytes(blocks: list[bytes]) -> bytes:
+    """Converts a list of byte blocks to a single byte string"""
+    return b"".join(blocks)

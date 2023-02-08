@@ -19,11 +19,11 @@ def int2bytes(integer: int) -> bytes:
     return integer.to_bytes(1, "little")
 
 
-def string2dict(string: str) -> dict:
+def string2dict(string: str, equal_sign: str = "=", break_sign: str = "&") -> dict:
     """Converts a string of the form `key1=value1&key2=value2&...` to a dictionary"""
     kv_store = {}
-    for kv_pair in string.split("&"):
-        k, v = kv_pair.split("=")
+    for kv_pair in string.split(break_sign):
+        k, v = kv_pair.split(equal_sign)
         kv_store[k] = v
 
     return kv_store

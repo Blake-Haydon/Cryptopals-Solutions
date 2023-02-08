@@ -1,4 +1,4 @@
-from conversions import int2bytes
+from .conversions import int2bytes
 
 
 def apply_pkcs_7(byte_string: bytes, block_size: int) -> bytes:

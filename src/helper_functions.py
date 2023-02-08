@@ -1,5 +1,5 @@
 import numpy as np
-from conversions import int2bytes
+from .conversions import int2bytes
 
 
 # English letter probabilities from https://en.wikipedia.org/wiki/Letter_frequency

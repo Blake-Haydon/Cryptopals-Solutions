@@ -1,5 +1,5 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from helper_functions import xor_bytes, has_repeated_blocks
+from .helper_functions import xor_bytes, has_repeated_blocks
 
 
 def is_ecb_mode(oracle: callable, block_size: int) -> bool:

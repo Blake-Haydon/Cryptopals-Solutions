@@ -10,7 +10,7 @@ This repo contains my solutions to the Cryptopals challenges, a set of cryptogra
   - [x] 1
   - [x] 2
   - [x] 3
-  - [ ] 4
+  - [x] 4
   - [x] 5
   - [ ] 6
   - [x] 7

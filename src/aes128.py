@@ -40,7 +40,7 @@ def cbc_encrypt(plaintext: bytes, key: bytes, iv: bytes) -> bytes:
     ```
     """
     cyphertext_blocks = [iv]
-    plaintext_blocks = bytes2blocks(plaintext, AES128_KEY_LENGTH)
+    plaintext_blocks = [None] + bytes2blocks(plaintext, AES128_KEY_LENGTH)
 
     # The first block has index 1 as the 0th block is the IV
     for i in range(1, len(plaintext_blocks)):
@@ -58,14 +58,14 @@ def cbc_encrypt(plaintext: bytes, key: bytes, iv: bytes) -> bytes:
     return blocks2bytes(cyphertext_blocks[1:])
 
 
-def cbc_decrypt(byte_string: bytes, key: bytes, iv: bytes) -> bytes:
+def cbc_decrypt(cyphertext: bytes, key: bytes, iv: bytes) -> bytes:
     """Decrypts a byte string with AES-128 in CBC mode
     ```
     C[0] = IV
     P[i] = D_k(C[i]) XOR C[i-1]
     ```
     """
-    cyphertext_blocks = [iv] + bytes2blocks(byte_string, AES128_KEY_LENGTH)
+    cyphertext_blocks = [iv] + bytes2blocks(cyphertext, AES128_KEY_LENGTH)
     plaintext_blocks = [None]
 
     # The first block has index 1 as the 0th block is the IV

@@ -15,33 +15,13 @@ def hamming_distance(a: bytes, b: bytes) -> int:
     return dist
 
 
-def xor_bytes(a: bytes, b: bytes) -> bytes:
-    """XORs bytes `a` and `b` (`a ^ b`)"""
-    assert len(a) == len(b), "The two byte arrays must have the same length"
-
-    xor_bytes = b""
-    for i in range(len(a)):
-        xor_bytes += int2bytes(a[i] ^ b[i])
-
-    return xor_bytes
-
-
-def repeat_key(sk: bytes, length: int):
-    """Expands a secret key `sk` to a byte array of length `length`"""
+def repeat_key(key: bytes, length: int):
+    """Expands a secret key to a byte array of a certain length"""
     expanded_sk = bytes()
     for i in range(length):
-        expanded_sk += int2bytes(sk[i % len(sk)])
+        expanded_sk += int2bytes(key[i % len(key)])
 
     return expanded_sk
-
-
-def repeating_key_xor(a: bytes, sk: bytes) -> bytes:
-    """Encrypts a byte array `a` with a repeating key `sk`"""
-    return xor_bytes(a, repeat_key(sk, len(a)))
-
-
-def xor_hex_strings(a: str, b: str) -> bytes:
-    return xor_bytes(bytes.fromhex(a), bytes.fromhex(b))
 
 
 def output_repeated_block(byte_string: bytes, blocksize: int) -> bytes:

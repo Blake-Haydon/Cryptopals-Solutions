@@ -1,5 +1,6 @@
 from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
-from .helper_functions import xor_bytes
+
+from .xor import xor_bytes
 from .convert import bytes2blocks, blocks2bytes
 
 AES128_KEY_LENGTH = 16

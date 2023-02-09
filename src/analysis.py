@@ -14,11 +14,11 @@ def gen_letter_prob_arr():
 
     # Load JSON
     with open(ascii_freq_filepath, "r") as f:
-        ascii_freq = json.load(f)
+        ascii_freq_file = json.load(f)
 
-    # Generate array
+    # Generate array of normalized letter probabilities
     letter_prob_arr = 256 * [0]
-    for ascii_char in ascii_freq:
+    for ascii_char in ascii_freq_file:
         letter_prob_arr[ascii_char["Char"]] = ascii_char["Freq"]
 
     return letter_prob_arr
@@ -29,9 +29,29 @@ def score_string(string: str) -> float:
     language. The score is the sum of the probabilities of each letter
     in the string.
     """
-    letter_prob_arr = gen_letter_prob_arr()
-    score = 0
-    for char in string:
-        score += letter_prob_arr[ord(char)]
+    # If the string is empty, return 0
+    if len(string) == 0:
+        return 0
 
-    return score
+    # Count the number of occurrences of each letter
+    letter_counts = 256 * [0]
+    for char in string:
+        letter_counts[ord(char)] += 1
+
+    # Normalize letter counts
+    letter_counts = [count / len(string) for count in letter_counts]
+    # print(gen_letter_prob_arr())
+    # print(letter_counts)
+    # Calculate score
+    score = 0
+    letter_prob_arr = gen_letter_prob_arr()
+
+    for i in range(256):
+        score += abs(letter_counts[i] - letter_prob_arr[i])
+
+    # Take reciprocal of score as a lower score is better (now a higher score is better)
+    return 1 / score
+
+
+print(score_string("!@#$%^&*"))
+print(score_string("e e e e "))

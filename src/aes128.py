@@ -81,3 +81,35 @@ def cbc_decrypt(cyphertext: bytes, key: bytes, iv: bytes) -> bytes:
         )
 
     return blocks2bytes(plaintext_blocks[1:])
+
+
+def ctr_encrypt(plaintext: bytes, key: bytes, nonce: int) -> bytes:
+    """Encrypts a byte string with AES-128 in CTR mode
+    ```
+    C[i] = keystream XOR P[i], where keystream = E_k(nonce || ctr)
+    ```
+
+    NOTE: This is the same as `ctr_decrypt` (cyphertext is now the plaintext)
+    """
+
+    # Generate the keystream of length len(plaintext)
+    keystream = b""
+    for ctr in range((len(plaintext) // AES128_KEY_LENGTH) + 1):
+        keystream += ecb_encrypt(
+            nonce.to_bytes(8, "little") + ctr.to_bytes(8, "little"),
+            key,
+        )
+
+    return xor_bytes(keystream[: len(plaintext)], plaintext)
+
+
+def ctr_decrypt(cyphertext: bytes, key: bytes, nonce: int) -> bytes:
+    """Decrypts a byte string with AES-128 in CTR mode
+    ```
+    P[i] = keystream XOR C[i], where keystream = E_k(nonce || ctr)
+    ```
+
+    NOTE: This is the same as `ctr_encrypt` (plaintext is now the cyphertext)
+    """
+
+    return ctr_encrypt(cyphertext, key, nonce)

@@ -1,5 +1,7 @@
 import base64
 
+# Hex Functions:
+
 
 def hex2b64(hex_str: str) -> bytes:
     """Converts a hex string to a base64 string"""
@@ -11,15 +13,27 @@ def hex2bytes(hex_str: str) -> bytes:
     return bytes.fromhex(hex_str)
 
 
-def string2bytes(string: str) -> bytes:
-    """Converts a string encoded with utf-8 to a byte string"""
-    return bytes(string, "utf-8")
+# Int Functions:
 
 
-def int2bytes(integer: int) -> bytes:
+def int2byte(integer: int) -> bytes:
     """Convert a single byte integer (0, 255) to a byte"""
     assert 0 <= integer <= 255, "The integer must be between 0 and 255"
     return integer.to_bytes(1, "little")
+
+
+def bigint2bytes(bigint: int) -> bytes:
+    """Converts a big integer to a byte string. This function treats the
+    byteorder as a little-endian."""
+    return bigint.to_bytes((bigint.bit_length() + 7) // 8, "little")
+
+
+# String Functions:
+
+
+def string2bytes(string: str) -> bytes:
+    """Converts a string encoded with utf-8 to a byte string"""
+    return bytes(string, "utf-8")
 
 
 def string2dict(string: str, equal_sign: str = "=", break_sign: str = "&") -> dict:
@@ -30,6 +44,9 @@ def string2dict(string: str, equal_sign: str = "=", break_sign: str = "&") -> di
         kv_store[k] = v
 
     return kv_store
+
+
+# Bytes Functions:
 
 
 def bytes2blocks(byte_string: bytes, blocksize: int) -> list[bytes]:
@@ -43,12 +60,9 @@ def bytes2blocks(byte_string: bytes, blocksize: int) -> list[bytes]:
     ]
 
 
+# Block Functions:
+
+
 def blocks2bytes(blocks: list[bytes]) -> bytes:
     """Converts a list of byte blocks to a single byte string"""
     return b"".join(blocks)
-
-
-def bigint2bytes(bigint: int) -> bytes:
-    """Converts a big integer to a byte string. This function treats the
-    byteorder as a little-endian."""
-    return bigint.to_bytes((bigint.bit_length() + 7) // 8, "little")

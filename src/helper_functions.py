@@ -1,4 +1,4 @@
-from .convert import int2bytes, bytes2blocks
+from .convert import int2byte, bytes2blocks
 
 
 def hamming_distance(a: bytes, b: bytes) -> int:
@@ -19,7 +19,7 @@ def repeat_key(key: bytes, length: int):
     """Expands a secret key to a byte array of a certain length"""
     expanded_sk = bytes()
     for i in range(length):
-        expanded_sk += int2bytes(key[i % len(key)])
+        expanded_sk += int2byte(key[i % len(key)])
 
     return expanded_sk
 

@@ -6,13 +6,13 @@ This repo contains my solutions to the Cryptopals challenges, a set of cryptogra
 
 ## Completed Challenges
 
-- [ ] SET 1
+- [x] SET 1
   - [x] 1
   - [x] 2
   - [x] 3
   - [x] 4
   - [x] 5
-  - [ ] 6
+  - [x] 6
   - [x] 7
   - [x] 8
 - [ ] SET 2
@@ -26,7 +26,7 @@ This repo contains my solutions to the Cryptopals challenges, a set of cryptogra
   - [ ] 16
 - [ ] SET 3
   - [ ] 17
-  - [ ] 18
+  - [x] 18
   - [ ] 19
   - [ ] 20
   - [ ] 21

@@ -1,5 +1,5 @@
 from .helper_functions import repeat_key
-from .convert import int2bytes
+from .convert import int2byte
 
 
 def xor_bytes(a: bytes, b: bytes) -> bytes:
@@ -8,7 +8,7 @@ def xor_bytes(a: bytes, b: bytes) -> bytes:
 
     xor_bytes = b""
     for i in range(len(a)):
-        xor_bytes += int2bytes(a[i] ^ b[i])
+        xor_bytes += int2byte(a[i] ^ b[i])
 
     return xor_bytes
 

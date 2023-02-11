@@ -29,6 +29,7 @@ def score_string(string: str) -> float:
     language. The score is the sum of the probabilities of each letter
     in the string.
     """
+
     # If the string is empty, return 0
     if len(string) == 0:
         return 0
@@ -39,19 +40,14 @@ def score_string(string: str) -> float:
         letter_counts[ord(char)] += 1
 
     # Normalize letter counts
+
     letter_counts = [count / len(string) for count in letter_counts]
-    # print(gen_letter_prob_arr())
-    # print(letter_counts)
+
     # Calculate score
     score = 0
     letter_prob_arr = gen_letter_prob_arr()
-
     for i in range(256):
-        score += abs(letter_counts[i] - letter_prob_arr[i])
+        score += abs(letter_counts[i] - letter_prob_arr[i]) ** 2
 
     # Take reciprocal of score as a lower score is better (now a higher score is better)
     return 1 / score
-
-
-print(score_string("!@#$%^&*"))
-print(score_string("e e e e "))

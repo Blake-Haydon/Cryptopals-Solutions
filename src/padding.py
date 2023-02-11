@@ -1,11 +1,11 @@
-from .convert import int2bytes
+from .convert import int2byte
 
 
 def apply_pkcs_7(byte_string: bytes, blocksize: int) -> bytes:
     """Applies PKCS#7 padding to a byte string with a block size of `blocksize` bytes"""
     pad_len = blocksize - len(byte_string) % blocksize
     for _ in range(pad_len):
-        byte_string += int2bytes(pad_len)
+        byte_string += int2byte(pad_len)
 
     return byte_string
 

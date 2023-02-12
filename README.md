@@ -27,8 +27,8 @@ This repo contains my solutions to the Cryptopals challenges, a set of cryptogra
 - [ ] SET 3
   - [ ] 17
   - [x] 18
-  - [ ] 19
-  - [ ] 20
+  - [x] 19 - close enough (scoring function needs to be better)
+  - [x] 20 - close enough (scoring function needs to be better)
   - [ ] 21
   - [ ] 22
   - [ ] 23

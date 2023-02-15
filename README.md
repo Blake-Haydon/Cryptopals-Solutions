@@ -15,15 +15,15 @@ This repo contains my solutions to the Cryptopals challenges, a set of cryptogra
   - [x] 6
   - [x] 7
   - [x] 8
-- [ ] SET 2
+- [x] SET 2
   - [x] 9
   - [x] 10
   - [x] 11
   - [x] 12
   - [x] 13
-  - [x] 14
+  - [x] 14 - close enough (the code is a bit buggy and sometimes stops too early)
   - [x] 15
-  - [ ] 16
+  - [x] 16
 - [ ] SET 3
   - [ ] 17
   - [x] 18

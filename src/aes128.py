@@ -113,3 +113,19 @@ def ctr_decrypt(cyphertext: bytes, key: bytes, nonce: int) -> bytes:
     """
 
     return ctr_encrypt(cyphertext, key, nonce)
+
+
+def ctr_edit(
+    ciphertext: bytes,
+    key: bytes,
+    nonce: bytes,
+    offset: int,
+    new_text: bytes,
+) -> bytes:
+    """The functions allows you to "seek" into the `ciphertext`, decrypt, and re-encrypt
+    with different plaintext (`new_text`)"""
+    plaintext = ctr_decrypt(ciphertext, key, nonce)
+    i_from = offset
+    i_to = offset + len(new_text)
+    new_plaintext = plaintext[:i_from] + new_text + plaintext[i_to:]
+    return ctr_encrypt(new_plaintext, key, nonce)

@@ -35,8 +35,8 @@ This repo contains my solutions to the Cryptopals challenges, a set of cryptogra
   - [ ] 24
 - [ ] SET 4
   - [x] 25
-  - [ ] 26
-  - [ ] 27
+  - [x] 26
+  - [x] 27
   - [ ] 28
   - [ ] 29
   - [ ] 30

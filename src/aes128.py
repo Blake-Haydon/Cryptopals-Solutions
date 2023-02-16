@@ -3,7 +3,8 @@ from cryptography.hazmat.primitives.ciphers import Cipher, algorithms, modes
 from .xor import xor_bytes
 from .convert import bytes2blocks, blocks2bytes
 
-AES128_KEY_LENGTH = 16
+KEY_LENGTH = 16
+BLOCK_SIZE = 16
 
 
 def ecb_encrypt(plaintext: bytes, key: bytes) -> bytes:
@@ -40,7 +41,7 @@ def cbc_encrypt(plaintext: bytes, key: bytes, iv: bytes) -> bytes:
     ```
     """
     cyphertext_blocks = [iv]
-    plaintext_blocks = [None] + bytes2blocks(plaintext, AES128_KEY_LENGTH)
+    plaintext_blocks = [None] + bytes2blocks(plaintext, KEY_LENGTH)
 
     # The first block has index 1 as the 0th block is the IV
     for i in range(1, len(plaintext_blocks)):
@@ -65,7 +66,7 @@ def cbc_decrypt(cyphertext: bytes, key: bytes, iv: bytes) -> bytes:
     P[i] = D_k(C[i]) XOR C[i-1]
     ```
     """
-    cyphertext_blocks = [iv] + bytes2blocks(cyphertext, AES128_KEY_LENGTH)
+    cyphertext_blocks = [iv] + bytes2blocks(cyphertext, KEY_LENGTH)
     plaintext_blocks = [None]
 
     # The first block has index 1 as the 0th block is the IV
@@ -94,7 +95,7 @@ def ctr_encrypt(plaintext: bytes, key: bytes, nonce: int) -> bytes:
 
     # Generate the keystream of length len(plaintext)
     keystream = b""
-    for ctr in range((len(plaintext) // AES128_KEY_LENGTH) + 1):
+    for ctr in range((len(plaintext) // KEY_LENGTH) + 1):
         keystream += ecb_encrypt(
             nonce.to_bytes(8, "little") + ctr.to_bytes(8, "little"),
             key,
